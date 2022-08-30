@@ -1,0 +1,35 @@
+.spacedElements {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  position: relative;
+ 
+}
+.lable {
+  font-size: 0.6rem;
+}
+.value {
+  font-size: 0.5rem;
+  font-weight: 600;
+}
+
+@media (min-width: 769px) {
+  .lable {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+  .value {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width:768px) {
+  .lable {
+    font-size: 0.8rem;
+    line-height: 1.25rem;
+  }
+  .value {
+    font-size: 0.8rem;
+  }
+}

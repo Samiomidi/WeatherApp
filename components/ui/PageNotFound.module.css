@@ -1,0 +1,39 @@
+
+.container{
+position: relative;
+margin: 1rem auto;
+display: flex;
+flex-direction: column;
+overflow: hidden;
+align-items: center;
+}
+.image{
+    /* display: none; */
+    width:100%;
+    height:100%;
+
+}
+.text{
+position: absolute;
+top: 1rem;
+color: white;
+}
+
+.btn{
+position: absolute;
+bottom: 1.5rem;
+margin-left: auto;
+font-size: 0.75rem;
+/* bottom: 2rem; */
+}
+
+@media (min-width : 960px) {
+    .text{
+        font-size: 2rem;
+        top: 2rem;
+        }   
+    .btn{
+        bottom: 4rem;
+        font-size: 1.2rem;
+        }    
+}

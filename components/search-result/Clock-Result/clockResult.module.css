@@ -1,0 +1,196 @@
+.night{
+
+  color: #fffcff;
+
+}
+.day{
+color: #333;
+
+}
+
+.top-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items:center;
+  justify-content: space-around;
+  position: relative;
+
+}
+
+@keyframes icon {
+  0%{
+    transform: translateX(-250%);
+opacity: 0;
+  }
+  50%{
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100%{
+    transform: translateX(250%);
+    opacity: 0;
+  }
+}
+
+.clock{
+  width: 20rem;
+  height:20rem;
+  position: relative;
+  /* padding: 2rem; */
+  border: 7px solid #282828;
+  box-shadow: -4px -4px 10px rgba(67,67,67,0.5),
+                inset 4px 4px 10px rgba(0,0,0,0.5),
+                inset -4px -4px 10px rgba(67,67,67,0.5),
+                4px 4px 10px rgba(0,0,0,0.3);
+  border-radius: 50%;
+  margin: 5px auto;
+/* overflow: hidden; */
+animation: clock 2s ease-in;
+
+}
+
+
+@keyframes clock {
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 0.1;
+  }
+  100%{
+    opacity: 1;
+
+  }
+  
+}
+  .temp_value {
+    font-weight: 600;
+    padding-bottom: 1rem;
+    font-size: 1.7rem;
+    line-height: 0.725;
+  }
+ 
+  .deg_sub {
+    font-size: 0.8rem;
+    margin-left: -0.7rem;
+  }
+  
+  .title {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 2.5rem;
+
+  }
+  
+  .condition {
+    font-size: 0.7rem;
+    /* margin-left: 0.8rem; */
+    /* font-weight: 500; */
+  }
+  .condition-icon img {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 1.2rem;
+  }
+
+.mid-container {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  left: 1.8rem;
+  top:55%;
+}
+.city_name{
+position: relative;
+
+}
+.country_code {
+  position: absolute;
+  font-size: 0.7rem;
+  font-weight: 700;
+  left: -4.5rem;
+top: 1.5rem;
+
+}
+
+@media (min-width: 769px) {
+  .clock{
+    width: 40rem;
+  height: 40rem;
+  margin: 2rem auto;
+  }
+  .temp_value {
+    font-size: 3rem;
+    line-height: 1.5;
+  }
+ 
+  .deg_sub {
+    font-size: 1rem;
+    margin-left: -0.8rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    line-height: 5rem;
+  }
+  
+  .condition {
+    font-size: 1.3rem;
+  }
+  .condition-icon img {
+    width: 8rem;
+    height: 8rem;
+    margin-top: 1.5rem;
+  }
+
+.mid-container {
+  left: 3rem;
+  top:60%;
+
+}
+.country_code {
+  font-size: 1.1rem;
+  top: 2rem;
+}
+}
+
+@media (min-width: 481px) and (max-width:768px) {
+  .clock{
+    width: 30rem;
+  height: 30rem;
+  }
+
+ .temp_value {
+    font-size: 2.5rem;
+    line-height: 1;
+  }  
+  .deg_sub {
+    font-size: 0.9rem;
+    margin-left: -0.8rem;
+  }
+  .title {
+    font-size: 2rem;
+    line-height: 3.5rem;
+  }
+  .condition {
+    font-size: 1rem;
+  }
+  .condition-icon img {
+    width: 5rem;
+    height: 5rem;
+    margin-top: 1.5rem;
+  }
+.mid-container {
+  left: 2.2rem;
+  top:57%;
+}
+.country_code {
+  font-size: 0.9rem;
+}
+}
+
+

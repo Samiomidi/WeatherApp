@@ -1,0 +1,47 @@
+.article{
+margin-top: 2rem;
+
+}
+.article h1{
+    margin: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+
+}
+.article p{
+    display: inline-block;
+    color: #111;
+    background-color: var(--very-light-green);
+}
+.article a{
+    color: var(--mid-loading-color);
+}
+.article a:active,
+.article a :visited{
+color: rgb(227, 15, 15);
+}
+
+.social{
+    display: flex;
+    justify-content: space-around;
+    max-width: 30%;
+    margin: 1rem auto;
+    font-size: 1.5rem;
+
+}
+.linkedin, .email, .github, .whatsapp{
+   color: #777;
+}
+
+.whatsapp:hover{
+    color:#25D366
+}
+.linkedin:hover{
+   color: #0A66C2;
+}
+.email:hover{
+    color: red;
+}
+.github:hover{
+    color: #211F1F;
+}

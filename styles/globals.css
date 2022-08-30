@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans:wght@400;700&display=swap");
+
+:root {
+  --primary-btn-color: #03be9f;
+  --dark-loading-color:rgba(2, 39, 14, 0.856);
+  --mid-loading-color:rgba(2, 107, 37, 0.705);
+  --light-loading-color:rgba(7, 183, 28, 0.87);
+  --primary-color: #2f9e44;
+  --very-light-green:#e2fde7f5;
+  --secondary-color: rgb(226, 243, 246);
+  --primary-text-color: rgba(136, 133, 133, 0.897);
+  --discount-color: #dc143c;
+  --star-color: rgb(230, 230, 25);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a,
+a:active,
+a:visited,
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+ul,
+li {
+  list-style: none;
+}
+input {
+  outline: none;
+}
+body {
+  font-family: "Open Sans", "Lato", sans-serif;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
+}
+.centered {
+  text-align: center;
+}
+.hover_detail {
+  position: absolute;
+  font-size: 0.4rem;
+  /* color: var(--primary-text-color); */
+  transform: translateY(0rem);
+  width: 8rem;
+  transition: all 0.3s;
+  left: -2.2rem;
+  visibility: hidden;
+  opacity: 0.2;
+}
+
+.lable_area:hover ~ .hover_detail {
+  transform: translateY(-1.4rem);
+  visibility: visible;
+  opacity: 1;
+}
+.overlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.162);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
+}
+.card {
+  max-width: 40rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 100%;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+@media (min-width: 769px) {
+  .hover_detail {
+    font-size: 1rem;
+    transform: translateY(0.8rem);
+    left: 1.3rem;
+
+
+  }
+  .lable_area:hover ~ .hover_detail {
+    transform: translateY(-2rem);
+  }
+}
+@media (min-width: 641px) and (max-width:768px) {
+  .hover_detail {
+    
+    font-size: 0.8rem;
+    transform: translateY(0.5rem);
+    left: -0.3rem;
+
+  }
+  .lable_area:hover ~ .hover_detail {
+    transform: translateY(-1.7rem);
+  }
+}
+@media (min-width: 480px) and (max-width:640px) {
+  .hover_detail {
+    font-size: 0.6rem;
+  }
+
+}
