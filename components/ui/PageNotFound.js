@@ -1,8 +1,8 @@
 import image from "../../assets/404.gif";
 import Button from "./Button";
 import classes from "./PageNotFound.module.css";
-import Image from "next/Image";
-const NOT_FOUND_PAGE = (props) => {
+
+const NOT_FOUND_PAGE = () => {
   return (
     <div className={classes.container}>
       <img src={image.src} alt="some 404 image" className={classes.image}></img>
