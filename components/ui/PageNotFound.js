@@ -5,7 +5,13 @@ import classes from "./PageNotFound.module.css";
 const NOT_FOUND_PAGE = () => {
   return (
     <div className={classes.container}>
-      <img src={image.src} alt="some 404 image" className={classes.image}></img>
+      <Image
+        src={image.src}
+        alt="some 404 image"
+        className={classes.image}
+        width={100}
+        height={100}
+      ></Image>
       <div className={classes.text}>
         <p>
           Sorry <br />
