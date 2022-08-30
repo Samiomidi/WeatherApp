@@ -58,8 +58,12 @@ const SearchBar = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     getUserCoords();
+    const firstPageShowToUser = "/result/London/51.5073219/-0.1276474";
     if (userLat && userLon) {
       setUserLocationLink(`/result/userlocation/${userLat}/${userLon}`);
+      router.replace(`/result/userlocation/${userLat}/${userLon}`);
+    } else {
+      router.replace(firstPageShowToUser);
     }
   }, [userLat, userLon, userLocationLink]);
   return (
