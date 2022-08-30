@@ -36,12 +36,16 @@ export async function getServerSideProps(context) {
   let searchResult = [];
   let finalResult = {};
 
-  const { data } = await axios.get(
+  const searchedRes = await fetch(
     getSearchLink(params.search[0], process.env.api_key_token)
   );
-  console.log(data);
-  if (data.length > 0) {
-    searchResult = await data.flatMap((city) => [
+  const searchedData = await searchedRes.json();
+  // const { data } = await axios.get(
+  //   getSearchLink(params.search[0], process.env.api_key_token)
+  // );
+
+  if (searchedData.length > 0) {
+    searchResult = await searchedData.flatMap((city) => [
       {
         city: city.name,
         country: city.country,
@@ -52,6 +56,7 @@ export async function getServerSideProps(context) {
       },
     ]);
   }
+
   if (searchResult.length === 0 && params.search[0] !== "userlocation") {
     return {
       notFound: true,
@@ -60,13 +65,21 @@ export async function getServerSideProps(context) {
   }
 
   if (params.search.length > 1) {
-    const { data } = await axios.get(
+    const finalResultRes = await fetch(
       getResultLink(
         params.search[1],
         params.search[2],
         process.env.api_key_token
       )
     );
+    const data = await finalResultRes.json();
+    // const { data } = await axios.get(
+    //   getResultLink(
+    //     params.search[1],
+    //     params.search[2],
+    //     process.env.api_key_token
+    //   )
+    // );
 
     finalResult = {
       locationName: data.name,
