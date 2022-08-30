@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import ClockResult from "./clock-result/clockResult";
+import ClockResult from "./Clock-result/clockResult";
 import SearchedResult from "./SearchedResult/searchedResult";
 import classes from "./result.module.css";
 
