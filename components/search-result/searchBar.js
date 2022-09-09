@@ -1,12 +1,11 @@
 import React, { useRef, useEffect, useState, Fragment } from "react";
 import { useRouter } from "next/router";
 import classes from "./searchBar.module.css";
-import Link from "next/link";
 import { BsSearch } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 
-const SearchBar = React.forwardRef((props, ref) => {
-  const [userLocationLink, setUserLocationLink] = useState("/");
+const SearchBar = (props) => {
+  const [getUserLocation, setGetUserLocation] = useState(false);
   const [enteredValue, setEnteredValue] = useState("");
   const [userLat, setUserLat] = useState();
   const [userLon, setUserLon] = useState();
@@ -19,15 +18,21 @@ const SearchBar = React.forwardRef((props, ref) => {
   const router = useRouter();
   const enteredValueChangeHandler = () => {
     setEnteredValue(inputRef.current.value);
+    const enteredValue = inputRef.current.value;
+    if (enteredValue.trim() != "") {
+      setError({
+        type: false,
+        message: "",
+      });
+    }
   };
   const submitHanler = (event) => {
     event.preventDefault();
-
     const enteredValue = inputRef.current.value;
     if (enteredValue.trim() == "") {
       setError({
         type: true,
-        message: "input is empty",
+        message: "Input is empty !!!",
       });
     } else {
       const exploreLink = `/result/${enteredValue}`;
@@ -53,48 +58,47 @@ const SearchBar = React.forwardRef((props, ref) => {
   }
 
   function locationBtnHandler() {
-    getUserCoords();
+    setGetUserLocation(!getUserLocation);
+    if (userLat && userLon) {
+      router.replace(`/result/userlocation/${userLat}/${userLon}`);
+    }
   }
 
   useEffect(() => {
     getUserCoords();
-    // const firstPageShowToUser = "/result/London/51.5073219/-0.1276474";
-    if (userLat && userLon) {
-      setUserLocationLink(`/result/userlocation/${userLat}/${userLon}`);
-      // router.replace(`/result/userlocation/${userLat}/${userLon}`);
-    } else {
-      // router.replace(firstPageShowToUser);
-    }
-  }, [userLat, userLon, userLocationLink]);
+  }, [getUserLocation]);
   return (
     <Fragment>
-      <form
-        onSubmit={submitHanler}
-        className={`${classes.searchbar} ${props.className}`}
-      >
-        <button className={classes.btn}>
-          <BsSearch className={classes["search-icon"]} />
-        </button>
-        <input
-          ref={inputRef}
-          className={classes.input}
-          type="search"
-          placeholder={props.placeholder}
-          value={enteredValue}
-          onChange={enteredValueChangeHandler}
+      <div className={classes.container}>
+        <form
+          onSubmit={submitHanler}
+          className={`${classes.searchbar} ${props.className}`}
         >
-          {props.children}
-        </input>
-        <Link href={userLocationLink} className={classes.location}>
-          <a onClick={locationBtnHandler}>
-            <MdLocationOn className={classes["location-icon"]} />
-            <span className={classes["hover-detail"]}>Use Your Location</span>
-          </a>
-        </Link>
-      </form>
-      {error.type && <div className={classes.error}>{error.message}</div>}
+          <button className={classes.btn}>
+            <BsSearch className={classes["search-icon"]} />
+          </button>
+          <input
+            ref={inputRef}
+            className={classes.input}
+            type="search"
+            placeholder={props.placeholder}
+            value={enteredValue}
+            onChange={enteredValueChangeHandler}
+          >
+            {props.children}
+          </input>
+        </form>
+        <div className={classes.location}>
+          <MdLocationOn
+            onClick={locationBtnHandler}
+            className={classes["location-icon"]}
+          />
+          <span className={classes["hover-detail"]}>Use Your Location</span>
+        </div>
+        {error.type && <div className={classes.error}>{error.message}</div>}
+      </div>
     </Fragment>
   );
-});
+};
 
 export default SearchBar;
