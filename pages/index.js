@@ -1,10 +1,8 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import Head from "next/head";
-import CoordContext from "../store/coord-context";
 
-const HomePage = () => {
-  const ctx = useContext(CoordContext);
-
+import HomePage from "../components/homePage";
+const Home = () => {
   return (
     <Fragment>
       <Head>
@@ -15,13 +13,9 @@ const HomePage = () => {
           content="Find the current weather data for every place you need!"
         />
       </Head>
-      {ctx.error && (
-        <div className="card">
-          <h1>{ctx.errorMessage}</h1>
-        </div>
-      )}
+      <HomePage />
     </Fragment>
   );
 };
 
-export default HomePage;
+export default Home;

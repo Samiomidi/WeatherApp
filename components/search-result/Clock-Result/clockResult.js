@@ -20,11 +20,7 @@ const ClockResult = (props) => {
   const themeChangeHandler = () => {
     const dayOrNight =
       targetCondition?.code?.[targetCondition.code.length - 1] + "";
-    if (dayOrNight === "n") {
-      ctx.onSetTheme("night");
-    } else {
-      ctx.onSetTheme("day");
-    }
+    dayOrNight === "n" ? ctx.onSetTheme("night") : ctx.onSetTheme("day");
   };
 
   useEffect(() => {

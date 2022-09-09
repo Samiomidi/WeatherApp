@@ -6,3 +6,5 @@ export const getSearchLink = (city, apiToken) =>
 
 export const getResultLink = (lat, lon, apiToken) =>
   `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiToken}`;
+export const getForecastLink = (lat, lon, apiToken) =>
+  `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiToken}`;

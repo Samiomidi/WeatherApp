@@ -6,6 +6,7 @@ import Layout from "../components/layout/layout";
 import CoordContextProvider from "../store/CoordContextProvider";
 import "../styles/globals.css";
 import Loading from "../components/ui/Loading";
+import HomePage from "../components/homePage";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

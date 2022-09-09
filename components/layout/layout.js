@@ -1,25 +1,56 @@
 import classes from "./layout.module.css";
 import { useState } from "react";
 import Link from "next/link";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import SearchBar from "../search-result/searchBar";
+import useScrollPosition from "../customHooks/useScrollPosition";
+import logo from "../../public/logo.svg";
+import Image from "next/image";
+import { useRouter } from "next/router";
 const Layout = (props) => {
+  const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
   function toggleMenuHandler() {
     setShowMenu(!showMenu);
   }
+  const scrollPosition = useScrollPosition();
+
   return (
     <div className={classes.layout}>
-      <header className={classes.header}>
-        <div className={classes.logo}>
-          <Link href="/">Easy Weather</Link>
+      <header
+        className={`${classes.header}  ${
+          scrollPosition > 10 && classes["header-scrolled"]
+        } ${router.pathname !== "/" && classes["header-background"]}`}
+      >
+        <div className={`${classes.logo}`}>
+          <Link href="/">
+            <Image src={logo} />
+          </Link>
         </div>
-        <SearchBar placeholder="Search your goal location" />
-        <AiOutlineMenu className={classes.menu} onClick={toggleMenuHandler} />
+        {router.pathname !== "/" && (
+          <SearchBar
+            placeholder="Search locations"
+            className={classes.searchbar}
+          />
+        )}
+        {!showMenu && (
+          <AiOutlineMenu
+            className={classes["menu-icon"]}
+            onClick={toggleMenuHandler}
+          />
+        )}
         <nav className={classes.nav}>
           {showMenu && (
             <div className={classes.overlay} onClick={toggleMenuHandler}>
-              <ul className={classes["mobile-menu"]}>
+              <ul
+                className={`${classes["mobile-menu"]} ${
+                  scrollPosition > 10 && classes["mobile-menu-scrolled"]
+                }`}
+              >
+                <AiOutlineClose
+                  onClick={toggleMenuHandler}
+                  className={classes["close-icon"]}
+                />
                 <li>
                   <Link href="/about-us" className={classes.menuOver}>
                     About

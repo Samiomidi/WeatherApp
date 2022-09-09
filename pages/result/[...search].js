@@ -1,12 +1,16 @@
 import { Fragment } from "react";
 import Result from "../../components/search-result/result";
 import Head from "next/head";
-import { getSearchLink, getResultLink } from "../../components/general/Links";
+import {
+  getSearchLink,
+  getResultLink,
+  getForecastLink,
+} from "../../components/general/Links";
 import {
   CalcTemp,
   CalcMeterPerSecToKmPerHour,
 } from "../../components/general/GeneralCalc";
-import axios from "axios";
+
 const searchResults = (props) => {
   const headDescCity = props.finalResult.locationName
     ? props.finalResult.locationName
@@ -25,6 +29,7 @@ const searchResults = (props) => {
       <Result
         searchResult={props.searchResult}
         finalResult={props.finalResult}
+        forecastResult={props.forecastResult}
       />
     </Fragment>
   );
@@ -35,6 +40,7 @@ export async function getServerSideProps(context) {
 
   let searchResult = [];
   let finalResult = {};
+  let forecastResult = [];
 
   const searchedRes = await fetch(
     getSearchLink(params.search[0], process.env.api_key_token)
@@ -45,7 +51,7 @@ export async function getServerSideProps(context) {
   // );
 
   if (searchedData.length > 0) {
-    searchResult = await searchedData.flatMap((city) => [
+    searchResult = searchedData.flatMap((city) => [
       {
         city: city.name,
         country: city.country,
@@ -65,6 +71,43 @@ export async function getServerSideProps(context) {
   }
 
   if (params.search.length > 1) {
+    const forecastResultRes = await fetch(
+      getForecastLink(
+        params.search[1],
+        params.search[2],
+        process.env.api_key_token
+      )
+    );
+    const { list = [], city = [] } = await forecastResultRes.json();
+
+    forecastResult = list.flatMap((day) => [
+      {
+        id: day.dt * Math.random() * day.main.temp,
+        dt: day.dt,
+        temp: CalcTemp(day.main.temp, "k", "c"),
+        feelsLike: CalcTemp(day.main.feels_like, "k", "c"),
+        tempMin: CalcTemp(day.main.temp_min, "k", "c"),
+        tempMax: CalcTemp(day.main.temp_max, "k", "c"),
+        pressure: day.main.pressure,
+        seaLevel: day.main.sea_level,
+        groundLevel: day.main.grnd_level,
+        humidity: day.main.humidity,
+        weatherId: day.weather[0].id,
+        weatherMain: day.weather[0].main,
+        weatherDescription: day.weather[0].description,
+        weatherIcon: day.weather[0].icon,
+        cloudsAll: day.clouds.all,
+        windSpeed: CalcMeterPerSecToKmPerHour(day.wind.speed),
+        windDeg: CalcTemp(day.wind.deg, "k", "c"),
+        windGust: CalcMeterPerSecToKmPerHour(day.wind.gust),
+        visiblity: day.visibility,
+        pop: day.pop,
+        sysPod: day.sys.pod,
+        dtTxt: day.dt_txt,
+        day: +day.dt_txt.split(" ")[0].split("-")[2],
+      },
+    ]);
+
     const finalResultRes = await fetch(
       getResultLink(
         params.search[1],
@@ -72,7 +115,7 @@ export async function getServerSideProps(context) {
         process.env.api_key_token
       )
     );
-    const data = await finalResultRes.json();
+    const finalData = await finalResultRes.json();
     // const { data } = await axios.get(
     //   getResultLink(
     //     params.search[1],
@@ -82,28 +125,33 @@ export async function getServerSideProps(context) {
     // );
 
     finalResult = {
-      locationName: data.name,
-      base: data.base,
-      humidity: data.main.humidity,
-      temp: CalcTemp(data.main.temp, "k", "c"),
-      tempMin: CalcTemp(data.main.temp_min, "k", "c"),
-      tempMax: CalcTemp(data.main.temp_max, "k", "c"),
-      windSpeed: CalcMeterPerSecToKmPerHour(data.wind.speed),
-      windDeg: CalcTemp(data.wind.deg),
-      weatherMain: data.weather[0].main,
-      timeZone: data.timezone * 1000,
-      lastUpdate: data.dt,
-      countryCode: data.sys.country,
-      condition: data.weather[0].main,
-      conditionId: data.weather[0].id,
-      conditionIcon: data.weather[0].icon,
-      conditionDesc: data.weather[0].description,
-      sunrise: data.sys.sunrise * 1000,
-      sunset: data.sys.sunset * 1000,
+      locationName: finalData.name,
+      base: finalData.base,
+      humidity: finalData.main.humidity,
+      temp: CalcTemp(finalData.main.temp, "k", "c"),
+      tempMin: CalcTemp(finalData.main.temp_min, "k", "c"),
+      tempMax: CalcTemp(finalData.main.temp_max, "k", "c"),
+      tempK: finalData.main.temp,
+      tempMinK: finalData.main.temp_min,
+      tempMaxK: finalData.main.temp_max,
+      windSpeed: CalcMeterPerSecToKmPerHour(finalData.wind.speed),
+      windDeg: CalcTemp(finalData.wind.deg, "k", "c"),
+      windDegK: finalData.wind.deg,
+      windGust: CalcMeterPerSecToKmPerHour(finalData.wind.gust),
+      weatherMain: finalData.weather[0].main,
+      timeZone: finalData.timezone * 1000,
+      lastUpdate: finalData.dt,
+      countryCode: finalData.sys.country,
+      condition: finalData.weather[0].main,
+      conditionId: finalData.weather[0].id,
+      conditionIcon: finalData.weather[0].icon,
+      conditionDesc: finalData.weather[0].description,
+      sunrise: finalData.sys.sunrise * 1000,
+      sunset: finalData.sys.sunset * 1000,
     };
   }
 
-  return { props: { searchResult, finalResult } };
+  return { props: { searchResult, finalResult, forecastResult } };
 }
 
 export default searchResults;

@@ -7,7 +7,7 @@ import {
 import classes from "./aboutUs.module.css";
 function AboutUs() {
   return (
-    <div>
+    <div className={classes.container}>
       <article className={classes.article}>
         <h1>What is EASY WEATHER</h1>
         <p className="card">

@@ -1,0 +1,36 @@
+.chart-bar {
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content:flex-end;
+    position: relative;
+  
+  }
+  
+  .fill {
+    width:45%;
+    justify-content:center;
+    align-items:center;
+    height: 0.6rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+  position: relative;
+  background: linear-gradient(270deg,var(--dark-loading-color)40%, rgba(72,38,185,0) 100%);
+    transition: all 0.3s ease-out;
+    margin: 0 1rem;
+    /* position: absolute; */
+    /* right:1.3rem; */
+    
+  }
+  .chart-value{
+    position: absolute;
+    font-size: 0.8rem;
+    font-weight:900;
+  }
+  .chart-max-value{
+  right: -1.1rem;
+  }
+  .chart-min-value{
+    left: -1.1rem;
+    }
