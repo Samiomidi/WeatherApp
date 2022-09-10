@@ -1,5 +1,5 @@
 .container{
-  width:100vw;
+  width:80vw;
   display:flex;
   height: 2.2rem;
   justify-content: center;
@@ -49,6 +49,7 @@ align-items: center;
     max-width: 10rem;
     transition: all ease-out 0.2s;
     visibility: hidden;
+    display: none;
     opacity: 0.2;
     font-size: 0.6rem;
     font-weight: 700;
@@ -68,8 +69,8 @@ align-items: center;
   cursor: pointer;
   color:var(--primary-color);
   position: absolute;
-  top: 0.5rem;
-  right: 2%;
+  top: 0.4rem;
+  right: 3%;
 }
 
 .location-icon:hover{
@@ -119,9 +120,10 @@ animation-iteration-count: 3;
 
   .hover-detail {
     font-size: 0.8rem;
- 
+ display: block;
 
   }
+  
   
   .location-icon{
     width: 1.5rem;

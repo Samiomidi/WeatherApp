@@ -6,7 +6,7 @@ function HomePage() {
   const imageNum = Math.floor(Math.random() * 6 + 1);
 
   return (
-    <>
+    <div className={classes.main}>
       <div
         className={classes["hero-section"]}
         style={{
@@ -34,7 +34,7 @@ function HomePage() {
           </p>
         </article>
       </div>
-    </>
+    </div>
   );
 }
 
