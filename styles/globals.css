@@ -38,7 +38,16 @@ li {
 }
 input {
   outline: none;
+  -webkit-user-select: text;
+  /* Chrome, Opera, Safari */
+  -moz-user-select: text;
+  /* Firefox 2+ */
+  -ms-user-select: text;
+  /* IE 10+ */
+  user-select: text;
+  /* Standard syntax */
 }
+
 body {
   font-family: "Open Sans", "Lato", sans-serif;
 
