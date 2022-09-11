@@ -57,7 +57,7 @@ const Layout = (props) => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about-us">Contact</Link>
+                  <Link href="/contact">Contact</Link>
                 </li>
               </ul>
             </div>
@@ -67,7 +67,7 @@ const Layout = (props) => {
               <Link href="/about-us">About</Link>
             </li>
             <li>
-              <Link href="/about-us">Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
         </nav>
