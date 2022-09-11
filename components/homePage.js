@@ -41,7 +41,9 @@ function HomePage(props) {
           backgroundImage: `url(/bg-${props.imageNum}.jpg)`,
         }}
       >
-        <SearchBar placeholder={"Search locations"} />
+        <div className={classes.searchbar}>
+          <SearchBar placeholder={"Search locations"} />
+        </div>
       </div>
 
       <div className={classes.content}>

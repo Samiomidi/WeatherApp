@@ -28,17 +28,17 @@ const Layout = (props) => {
           </Link>
         </div>
         {router.pathname !== "/" && (
-          <SearchBar
-            placeholder="Search locations"
-            className={classes.searchbar}
-          />
+          <div className={classes.searchbar}>
+            <SearchBar placeholder="Search locations" />
+          </div>
         )}
-        {!showMenu && (
-          <AiOutlineMenu
-            className={classes["menu-icon"]}
-            onClick={toggleMenuHandler}
-          />
-        )}
+
+        <AiOutlineMenu
+          className={classes["menu-icon"]}
+          onClick={toggleMenuHandler}
+          style={{ visibility: `${showMenu ? "hidden" : "visible"}` }}
+        />
+
         <nav className={classes.nav}>
           {showMenu && (
             <div className={classes.overlay} onClick={toggleMenuHandler}>

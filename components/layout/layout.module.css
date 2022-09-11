@@ -31,6 +31,9 @@ overflow: hidden;
   box-shadow: 0 2px 12px rgba(3, 63, 11, 0.587);
 
 }
+.searchbar{
+  width:40%;
+ }
 .menu-icon{
   display: none;
 
@@ -88,7 +91,7 @@ margin: 0.5 auto;
   }
  .searchbar{
   zoom: 0.7;
-  width:100%;
+  width:60%;
  }
   .mobile-menu {
     display: block;
