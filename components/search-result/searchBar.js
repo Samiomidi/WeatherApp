@@ -50,11 +50,18 @@ const SearchBar = (props) => {
           setUserLat(pos.coords.latitude);
           setUserLon(pos.coords.longitude);
           setUserLocationAllow(true);
+          localStorage.setItem("locationAllowance", true);
+          localStorage.setItem("userLat", pos.coords.latitude);
+          localStorage.setItem("userLon", pos.coords.longitude);
         },
         () => {
           alert(
             "Your location information is not accessible. Please allow access and try again."
           );
+          setUserLocationAllow(false);
+          localStorage.setItem("locationAllowance", false);
+          localStorage.setItem("userLat", "");
+          localStorage.setItem("userLon", "");
         }
       );
     }
@@ -62,11 +69,23 @@ const SearchBar = (props) => {
 
   function locationBtnHandler() {
     getUserCoords();
+
+    if (localStorage.getItem("locationAllowance") === "true") {
+      router.replace(
+        `/result/userlocation/${localStorage.getItem(
+          "userLat"
+        )}/${localStorage.getItem("userLon")}`
+      );
+    }
     if (userLat && userLon) {
       router.replace(`/result/userlocation/${userLat}/${userLon}`);
     }
   }
-
+  useEffect(() => {
+    if (localStorage.getItem("locationAllowance") === "true") {
+      setUserLocationAllow(true);
+    }
+  }, [userLocationAllow]);
   return (
     <Fragment>
       <div className={classes.container}>
