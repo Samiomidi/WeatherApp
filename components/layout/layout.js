@@ -74,7 +74,23 @@ const Layout = (props) => {
       </header>
 
       <main className={classes.main}>{props.children}</main>
-      <footer className={classes.footer}></footer>
+      <footer className={classes.footer}>
+        <div className={classes.copyright}>
+          <p class="copyright">
+            &copy; Copyright{" "}
+            {new Date().toLocaleDateString("en-US", { year: "numeric" })}
+            {" by "}
+            <a
+              className={classes["mail-link"]}
+              target="_blank"
+              href="mailto:samiomidi@hotmail.com"
+            >
+              {" Sami Omidi"}
+            </a>
+            . Use for learning or your portfolio. Don't claim as your own.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };

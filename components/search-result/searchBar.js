@@ -5,7 +5,7 @@ import { BsSearch } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 
 const SearchBar = (props) => {
-  const [getUserLocation, setGetUserLocation] = useState(false);
+  const [userLocationAllow, setUserLocationAllow] = useState(null);
   const [enteredValue, setEnteredValue] = useState("");
   const [userLat, setUserLat] = useState();
   const [userLon, setUserLon] = useState();
@@ -15,6 +15,7 @@ const SearchBar = (props) => {
   });
 
   const inputRef = useRef();
+  const locationIconRef = useRef();
   const router = useRouter();
   const enteredValueChangeHandler = () => {
     setEnteredValue(inputRef.current.value);
@@ -29,6 +30,7 @@ const SearchBar = (props) => {
   const submitHanler = (event) => {
     event.preventDefault();
     const enteredValue = inputRef.current.value;
+
     if (enteredValue.trim() == "") {
       setError({
         type: true,
@@ -47,6 +49,7 @@ const SearchBar = (props) => {
         (pos) => {
           setUserLat(pos.coords.latitude);
           setUserLon(pos.coords.longitude);
+          setUserLocationAllow(true);
         },
         () => {
           alert(
@@ -58,15 +61,12 @@ const SearchBar = (props) => {
   }
 
   function locationBtnHandler() {
-    setGetUserLocation(!getUserLocation);
+    getUserCoords();
     if (userLat && userLon) {
       router.replace(`/result/userlocation/${userLat}/${userLon}`);
     }
   }
 
-  useEffect(() => {
-    getUserCoords();
-  }, [getUserLocation]);
   return (
     <Fragment>
       <div className={classes.container}>
@@ -92,6 +92,8 @@ const SearchBar = (props) => {
           <MdLocationOn
             onClick={locationBtnHandler}
             className={classes["location-icon"]}
+            ref={locationIconRef}
+            style={userLocationAllow && { color: "var(--primary-color)" }}
           />
           <span className={classes["hover-detail"]}>Use Your Location</span>
         </div>

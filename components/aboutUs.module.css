@@ -1,5 +1,5 @@
 .container{
-    width:50%;
+    width:90%;
 }
 .article{
 margin-top: 2rem;
@@ -47,4 +47,10 @@ color: rgb(227, 15, 15);
 }
 .github:hover{
     color: #211F1F;
+}
+
+@media (min-width:960px) {
+    .container{
+        width:50%;
+    }
 }
