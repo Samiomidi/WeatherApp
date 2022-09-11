@@ -120,19 +120,17 @@ function Canvas(props) {
           context.arc(flake.x + 200, y, 60, Math.PI * 1.5, Math.PI * 0.5);
         }
 
-        // context.fillStyle = "#8ED6FF";
-        // context.fill();
         if (
           condition === "few clouds" ||
           condition === "scattered clouds" ||
           condition === "broken clouds"
         ) {
           cloudDraw(150);
+          moveFlakes();
         }
       }
 
       context.fill();
-      moveFlakes();
     }
 
     let angle = 0;
