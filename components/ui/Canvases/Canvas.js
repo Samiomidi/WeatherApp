@@ -132,7 +132,7 @@ function Canvas(props) {
       }
 
       context.fill();
-      // moveFlakes();
+      moveFlakes();
     }
 
     let angle = 0;

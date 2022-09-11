@@ -19,7 +19,7 @@ const Layout = (props) => {
     <div className={classes.layout}>
       <header
         className={`${classes.header}  ${
-          scrollPosition > 10 && classes["header-scrolled"]
+          scrollPosition > 0 && classes["header-scrolled"]
         } ${router.pathname !== "/" && classes["header-background"]}`}
       >
         <div className={`${classes.logo}`}>
@@ -44,7 +44,7 @@ const Layout = (props) => {
             <div className={classes.overlay} onClick={toggleMenuHandler}>
               <ul
                 className={`${classes["mobile-menu"]} ${
-                  scrollPosition > 10 && classes["mobile-menu-scrolled"]
+                  scrollPosition > 0 && classes["mobile-menu-scrolled"]
                 }`}
               >
                 <AiOutlineClose
