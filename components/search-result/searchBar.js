@@ -15,7 +15,6 @@ const SearchBar = (props) => {
   });
 
   const inputRef = useRef();
-  const locationIconRef = useRef();
   const router = useRouter();
   const enteredValueChangeHandler = () => {
     setEnteredValue(inputRef.current.value);
@@ -111,7 +110,6 @@ const SearchBar = (props) => {
           <MdLocationOn
             onClick={locationBtnHandler}
             className={classes["location-icon"]}
-            ref={locationIconRef}
             style={userLocationAllow && { color: "var(--primary-color)" }}
           />
           <span className={classes["hover-detail"]}>Use Your Location</span>

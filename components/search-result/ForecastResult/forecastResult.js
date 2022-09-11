@@ -5,7 +5,7 @@ import { HiOutlineSelector } from "react-icons/hi";
 import { BsDroplet } from "react-icons/bs";
 import classes from "./forecastResult.module.css";
 import { iconLink } from "../../general/Links";
-import Tab from "../../customHooks/Tabs/useTab";
+import Tab from "../../customHooks/Tabs/tabs";
 function forecastResult(props) {
   const { forecastResult } = props;
   console.log("forecastResult.js");
@@ -322,6 +322,7 @@ function forecastResult(props) {
   return (
     <Tab
       tabs={[{ Weekly: Tab1() }, { Daily: Tab2() }, { Hourly: Tab3() }]}
+      activeDefault={0}
       className={`${props.className}`}
     />
   );

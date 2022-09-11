@@ -76,7 +76,7 @@ const Layout = (props) => {
       <main className={classes.main}>{props.children}</main>
       <footer className={classes.footer}>
         <div className={classes.copyright}>
-          <p class="copyright">
+          <p className={classes.copyright}>
             &copy; Copyright{" "}
             {new Date().toLocaleDateString("en-US", { year: "numeric" })}
             {" by "}

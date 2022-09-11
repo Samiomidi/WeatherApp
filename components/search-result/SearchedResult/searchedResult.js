@@ -15,6 +15,9 @@ const SearchedResult = (props) => {
               <li className="card" key={data.id}>
                 <p className={classes.name}>{`${data.city}`}</p>
                 <p className={classes.country}>{`Country: ${data.country}`}</p>
+                {data.state && (
+                  <p className={classes.state}>{`State: ${data.state}`}</p>
+                )}
                 <Button link={exploreLink}>Get Weather</Button>
               </li>
             );
