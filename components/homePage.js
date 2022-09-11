@@ -51,7 +51,7 @@ function HomePage(props) {
           tabs={[
             { "Usage Areas": tab1() },
             { "About Application": tab2() },
-            { Specifications: tab3() },
+            { "Specifications dsfdsdsfsdfsdfsdf": tab3() },
           ]}
           activeDefault={null}
         />

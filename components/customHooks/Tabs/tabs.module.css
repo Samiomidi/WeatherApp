@@ -34,13 +34,14 @@
     transition: all 0.2s;
     transform:translateY(0px);
     padding:0.5rem;
-    word-break:break-word;
-
   }
 
   .active{
     transform:translateY(-5px);
     background-color :#fff;
     color :var(--primary-color);
-  
+ 
+  }
+  .active ~ .btn {
+    word-break:break-word;
   }
