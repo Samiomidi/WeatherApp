@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classes from "./tabs.module.css";
 function Tab(props) {
   const { tabs } = props;
+  console.log(tabs.length);
   const tabArr = tabs.map((tab, index) => {
     return {
       name: index,
@@ -30,7 +31,10 @@ function Tab(props) {
   };
 
   return (
-    <div className={`${classes.container} ${props.className}`}>
+    <div
+      className={`${classes.container} ${props.className}`}
+      style={props.style}
+    >
       <div className={classes.options}>
         {toggleFilter.map((btn) => {
           return (
@@ -39,6 +43,11 @@ function Tab(props) {
               className={`${classes.btn} ${
                 btn.activeTab == btn.name ? classes.active : ""
               }`}
+              style={
+                btn.activeTab == btn.name
+                  ? { width: "100%" }
+                  : { width: `${100 / tabs.length}%` }
+              }
               onClick={openFilterHandler}
               data-set={btn.name}
             >

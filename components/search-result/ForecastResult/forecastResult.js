@@ -322,7 +322,7 @@ function forecastResult(props) {
   return (
     <Tab
       tabs={[{ Weekly: Tab1() }, { Daily: Tab2() }, { Hourly: Tab3() }]}
-      activeDefault={0}
+      activeDefault={null}
       className={`${props.className}`}
     />
   );
