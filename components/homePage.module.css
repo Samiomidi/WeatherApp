@@ -81,6 +81,7 @@ display: block;
     width:40%;
     zoom: 1;
     }
+<<<<<<< HEAD
     .add-button {
         padding: 0.5rem 1.3rem;
         margin: 0.5rem;
@@ -98,3 +99,39 @@ display: block;
 }
 
 
+=======
+}
+
+
+/* Install Carddddd */
+.add-button {
+    text-decoration: none;
+    cursor: pointer;
+    font: inherit;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    text-align: center;
+    margin: 0.5rem;
+    transition: all 0.4s ease-in-out;
+    opacity:1;
+  }
+ 
+  .add-button:hover,
+  .add-button:active {
+    background-color: var(--primary-btn-color);
+    border-color: var(--primary-btn-color);
+
+  }
+  .install-card{
+    position: absolute;
+    top: 0;
+margin: 0 auto;
+z-index: 1000;
+display: block;
+
+
+  }
+>>>>>>> 9b2a7da85ce9ba7ad127ffeeaa3a941caa3a40ed
