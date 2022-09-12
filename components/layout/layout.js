@@ -27,6 +27,7 @@ const Layout = (props) => {
             <Image src={logo} />
           </Link>
         </div>
+
         {router.pathname !== "/" && (
           <div className={classes.searchbar}>
             <SearchBar placeholder="Search locations" />

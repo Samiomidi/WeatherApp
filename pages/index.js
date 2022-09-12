@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Head from "next/head";
 import HomePage from "../components/homePage";
+
 const Home = (props) => {
   return (
     <Fragment>
@@ -12,6 +13,7 @@ const Home = (props) => {
           content="Find the current weather data for every place you need!"
         />
       </Head>
+
       <HomePage imageNum={props.imageNum} />
     </Fragment>
   );

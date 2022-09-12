@@ -34,7 +34,39 @@ margin-bottom: 10rem;
     background-color: var(--very-light-green);
     margin: 0.2rem 0;
 }
-@media (min-width: 480px) {
+/* Install Carddddd */
+.add-button {
+    text-decoration: none;
+    cursor: pointer;
+    font: inherit;
+    background-color: var(--primary-color);
+    border: transparent;
+    border-radius: 6px;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    text-align: center;
+    font-size:0.7rem;
+    margin: 0.5rem;
+    transition: all 0.4s ease-in-out;
+    opacity:1;
+  }
+ 
+  .add-button:hover,
+  .add-button:active {
+    background-color: var(--primary-btn-color);
+  }
+  .install-card{
+    position: absolute;
+    top: 0;
+margin: 0 auto;
+z-index: 1000;
+display: block;
+
+
+  }
+
+ 
+@media (min-width: 769px) {
     .content{
       
     flex-direction: row;
@@ -49,4 +81,20 @@ margin-bottom: 10rem;
     width:40%;
     zoom: 1;
     }
+    .add-button {
+        padding: 0.5rem 1.3rem;
+        margin: 0.5rem;
+        font-size: 0.8rem;
+      }
 }
+
+@media (min-width: 480px) and (max-width: 768px) {
+
+    .add-button {
+        padding: 0.5rem 1.1rem;
+        margin: 0.5rem;
+        font-size: 0.7rem;
+      }
+}
+
+
