@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import classes from "./homePage.module.css";
 import SearchBar from "./search-result/searchBar";
 import Tab from "./customHooks/Tabs/tabs";
+import Modal from "./ui/Modal";
 
 function HomePage(props) {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [installationAccepted, setInstallationAccepted] = useState(false);
+  const [installationDinied, setInstallationDinied] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", (e) => {
+      console.log("dfdsfdfsdfsdfsdfsdf");
       e.preventDefault();
       setDeferredPrompt(e);
     });
   }, []);
   const btnInstallHandler = (e) => {
+    setInstallationAccepted(false);
+    setInstallationDinied(false);
     if (deferredPrompt) {
       e.target.style.opacity = "0";
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === "accepted") {
-          console.log("User accepted the A2HS prompt");
+          setShowModal(true);
+          setInstallationAccepted(true);
         } else {
-          console.log("User dismissed the A2HS prompt");
+          setShowModal(true);
+          setInstallationDinied(true);
         }
         setDeferredPrompt(null);
       });
@@ -63,30 +72,52 @@ function HomePage(props) {
   );
 
   return (
-    <div className={classes.main}>
-      <div
-        className={classes["hero-section"]}
-        style={{
-          backgroundImage: `url(/bg-${props.imageNum}.jpg)`,
-        }}
-      >
-        <div className={classes.searchbar}>
-          <SearchBar placeholder={"Search locations"} />
+    <Fragment>
+      {deferredPrompt && installCard}
+      {installationAccepted && (
+        <Modal
+          showModal={showModal}
+          style={{ backgroundImage: `url(/modalBackgrounds/confetti-32.gif)` }}
+        >
+          <strong className={classes["animate-charcter"]}>
+            Congratulations
+          </strong>
+          <span>
+            The program has been successfully added to your home page.
+          </span>
+        </Modal>
+      )}
+      {installationDinied && (
+        <Modal showModal={showModal}>
+          You can always install this web application by clicking on the{" "}
+          <strong>"Add to home screen"</strong> button if you could not find.
+          This button will always be accessible by refreshing the main page
+        </Modal>
+      )}
+      <div className={classes.main}>
+        <div
+          className={classes["hero-section"]}
+          style={{
+            backgroundImage: `url(/homePageBackgrounds/bg-${props.imageNum}.jpg)`,
+          }}
+        >
+          <div className={classes.searchbar}>
+            <SearchBar placeholder={"Search locations"} />
+          </div>
         </div>
-        {deferredPrompt && installCard}
-      </div>
 
-      <div className={classes.content}>
-        <Tab
-          tabs={[
-            { "Usage Areas": tab1 },
-            { "About Application": tab2 },
-            { Specifications: tab3 },
-          ]}
-          activeDefault={null}
-        />
+        <div className={classes.content}>
+          <Tab
+            tabs={[
+              { "Usage Areas": tab1 },
+              { "About Application": tab2 },
+              { Specifications: tab3 },
+            ]}
+            activeDefault={null}
+          />
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 }
 

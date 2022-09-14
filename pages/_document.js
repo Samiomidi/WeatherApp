@@ -17,6 +17,8 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.svg" />
         </Head>
         <body>
+          <div id="backdrop"></div>
+          <div id="modal"></div>
           <Main />
           <NextScript />
         </body>

@@ -1,10 +1,10 @@
 import classes from "./Loading.module.css";
-
+import Backdrop from "./Backdrop";
 const Loading = () => {
   return (
-    <div className="overlay">
-      <div className={classes.loader}></div>
-    </div>
+    <Backdrop>
+      <div className={classes.loader} />
+    </Backdrop>
   );
 };
 export default Loading;
