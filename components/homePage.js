@@ -90,8 +90,8 @@ function HomePage(props) {
       {installationDinied && (
         <Modal showModal={showModal}>
           You can always install this web application by clicking on the{" "}
-          <strong>"Add to home screen"</strong> button if you could not find.
-          This button will always be accessible by refreshing the main page
+          <strong>"Add to home screen"</strong> button. This button will always
+          be accessible by refreshing the main page
         </Modal>
       )}
       <div className={classes.main}>

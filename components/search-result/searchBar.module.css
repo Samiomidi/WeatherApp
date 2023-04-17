@@ -36,13 +36,13 @@
 }
 
 .search-icon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   cursor: pointer;
   color: var(--primary-color);
   position: absolute;
 
-  left: 2%;
+  left: 0.6rem;
 
 }
 
@@ -74,7 +74,7 @@
   color: var(--primary-text-color);
   position: absolute;
   top: 0.4rem;
-  right: 3%;
+  right: 0.8rem;
 }
 
 .location-icon:hover {
@@ -123,7 +123,7 @@
 
 
 
-@media (min-width:960px) {
+@media (min-width:768px) {
   .container {
 
     height: 3rem;
@@ -138,11 +138,11 @@
 
 
   .location-icon {
+    top: 0.75rem;
+  }
+  .search-icon {
     width: 1.5rem;
     height: 1.5rem;
-    top: 0.75rem;
-    /* top:15% */
-
+  
   }
-
 }
